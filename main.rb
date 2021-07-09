@@ -17,7 +17,7 @@ loop do
     $stdout.puts e.message
     redo
   end
-  name = NameGenerator.process(parsed_name, parsed_numeric)
-  $stdout.puts "Your avalible name: #{name}"
+  NameGenerator.process(parsed_name, parsed_numeric) 
+  # $stdout.puts "Your avalible name: #{freename}"
   exit
 end
