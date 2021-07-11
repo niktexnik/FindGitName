@@ -11,11 +11,11 @@ class Parser
   end
 
   def self.parse_numeric(numeric)
-    case numeric.upcase
+    case numeric.upcase!
     when 'Y'
-      numeric
+      numeric = true
     when 'N'
-      numeric
+      numeric = false
     else
       raise ParseError, 'Only Y/N'
     end

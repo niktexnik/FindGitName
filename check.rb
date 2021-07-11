@@ -8,7 +8,7 @@ class CheckUsername
 
   class << self
 
-    def obr(freename)
+    def nameloop(freename)
       freename.each do |text|
         check_name(text)
         print "Check name: #{text}, result: "
