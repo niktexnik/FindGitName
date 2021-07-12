@@ -7,6 +7,7 @@ class Parser
     raise ParseError, 'Tooooo short, motherfucker!' if name.nil? || name.empty?
     length = name.length
     raise ParseError, 'very - very long!' if length > 50
+    raise ParseError, 'Only firstname & lastame with one space' if !name.include? " "
     name
   end
 

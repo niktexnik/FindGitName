@@ -7,7 +7,6 @@ class CheckUsername
   BASE_URL = 'https://api.github.com/'
 
   class << self
-
     def nameloop(freename)
       freename.each do |text|
         check_name(text)
