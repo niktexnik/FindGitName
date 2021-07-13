@@ -1,18 +1,16 @@
 # frozen_string_literal: true
 class NameGenerator
-  def self.process(name, numeric)
+  def self.process(name, numeric = false)
     firstname, lastname = name.split
-    num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+    num = %w[1 2 3 4 5 6 7 8 9 0]
     freename = []
     i = 0
     while i < name.length
       i += 1
-      freename << if numeric == true
-                    firstname[0...i] + lastname[0...i] + "#{num.shuffle[i]}"
-                  else
-                    firstname[0...i] + lastname[0...i]
-                  end
+      str = firstname[0...i] + lastname[0...i]
+      str += num.shuffle[i].to_s if numeric
+      freename << str
     end
-    CheckUsername.nameloop(freename)
+    freename
   end
 end
