@@ -4,7 +4,6 @@ require 'http'
 
 class GithubApi
   BASE_URL = 'https://api.github.com/'
-
   class << self
     def check_name(text)
       request('users/', text)

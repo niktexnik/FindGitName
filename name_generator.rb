@@ -7,9 +7,9 @@ class NameGenerator
     i = 0
     while i < name.length
       i += 1
-      str = firstname[0...i] + lastname[0...i]
-      str += num.shuffle[i].to_s if numeric
-      freename << str
+      allnames = firstname[0...i] + lastname[0...i]
+      allnames += num.shuffle[i].to_s if numeric
+      freename << allnames
     end
     freename
   end
