@@ -1,15 +1,33 @@
-# frozen_string_literal: true
 require 'http'
 
 class GithubApi
-  BASE_URL = 'https://api.github.com/'
-  class << self
-    def check_name(text)
-      request('users/', text)
-    end
+  class Error < StandardError; end
 
-    def request(path, params)
-      HTTP.get("#{BASE_URL}#{path}#{params}")
+  BASE_URL = 'https://api.github.com/'.freeze
+
+  def name_available?(name)
+    begin
+      response = check_name(name)
+    rescue HTTP::ConnectionError
+      raise Error, 'Check your internet connection'
     end
+    raise Error 'Something went wrong' if !response.code == 200
+
+    parse_response(response)
+  end
+
+  private
+
+  def parse_response(response)
+    body = JSON.parse(response.body)
+    body.key?('message')
+  end
+
+  def check_name(text)
+    request('users/', text)
+  end
+
+  def request(path, params)
+    HTTP.get("#{BASE_URL}#{path}#{params}")
   end
 end
