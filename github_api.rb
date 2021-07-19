@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'http'
 
 class GithubApi
   class Error < StandardError; end
 
-  BASE_URL = 'https://api.github.com/'.freeze
+  BASE_URL = 'https://api.github.com/'
 
   def name_available?(name)
     begin
@@ -11,7 +13,7 @@ class GithubApi
     rescue HTTP::ConnectionError
       raise Error, 'Check your internet connection'
     end
-    raise Error 'Something went wrong' if !response.code == 200
+    raise Error, 'Something went wrong' if response.code != 200
 
     parse_response(response)
   end
