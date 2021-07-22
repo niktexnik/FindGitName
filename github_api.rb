@@ -13,8 +13,6 @@ class GithubApi
     rescue HTTP::ConnectionError
       raise Error, 'Check your internet connection'
     end
-    raise Error, 'Something went wrong' if response.code != 200
-
     parse_response(response)
   end
 
@@ -22,7 +20,7 @@ class GithubApi
 
   def parse_response(response)
     body = JSON.parse(response.body)
-    body.key?('message')
+    body['message'] == 'Not Found' && response.code == 404
   end
 
   def check_name(text)
