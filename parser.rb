@@ -26,6 +26,8 @@ class Parser
       raise ParseError, 'INPUT DIGITS!' if digits.nil? || digits.empty?
       raise ParseError, 'Without space, only digits' if digits.include? ' '
       raise ParseError, 'Only digits' unless digits[/^\d+$/]
+
+      digits
     end
   end
 end
