@@ -17,7 +17,7 @@ class NameGenerator
         result << [last, first].join
       end
     end
-    puts result
+    # puts result
     result
   end
 end

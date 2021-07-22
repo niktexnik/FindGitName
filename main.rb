@@ -8,8 +8,8 @@ loop do
   puts 'Do you want numbers in your nickname? (Only Y/N)'
   numeric = $stdin.gets.chomp
   if numeric == 'y'
-  puts 'Input your number'
-  digits = $stdin.gets.chomp
+    puts 'Input your number'
+    digits = $stdin.gets.chomp
   end
   begin
     checked_name = FindFreeGithubName.call(name, digits, numeric: numeric)
