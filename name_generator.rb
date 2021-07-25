@@ -1,23 +1,18 @@
 # frozen_string_literal: true
 
 class NameGenerator
-  def self.call(name, use_numbers, digits)
+  def call(name, use_numbers, digits)
     first_name, last_name = name.split
-    # numbers = [*(0..1000),*(1940..Date.today.year)]
-    result = []
-    1.upto([first_name.size, last_name.size].max) do |slice_size|
+    max_name_size = [first_name.size, last_name.size].max
+    result = (1..max_name_size).each_with_object([]) do |slice_size, array|
       first = first_name.slice(0...slice_size)
       last = last_name.slice(0...slice_size)
       if use_numbers
-        result << [digits, last, first].join
-        result << [last, digits, first].join
-        result << [last, first, digits].join
+        array << [last, first, digits].permutation.map(&:join)
       else
-        result << [first, last].join
-        result << [last, first].join
+        array << [last, first].permutation.map(&:join)
       end
     end
-    # puts result
-    result
+    result.flatten
   end
 end

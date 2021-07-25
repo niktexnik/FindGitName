@@ -22,14 +22,11 @@ class Parser
       end
     end
 
-    def parse_digest(digits)
-      if !digits.nil?
-        raise ParseError, 'INPUT DIGITS!' if digits.nil? || digits.empty?
-        raise ParseError, 'Without space, only digits' if digits.include? ' '
-        raise ParseError, 'Only digits' unless digits[/^\d+$/]
+    def parse_digits(digits)
+      raise ParseError, 'INPUT DIGITS!' if digits.nil? || digits.empty?
+      raise ParseError, 'Without space, only digits' if digits.include? ' '
+      raise ParseError, 'Only digits' unless digits[/^\d+$/]
 
-        digits
-      end
       digits
     end
   end
