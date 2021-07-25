@@ -9,8 +9,8 @@ class FindFreeGithubName
     parsed_name = Parser.parse_name(name)
     use_numbers = Parser.parse_options(defaults.merge(options))
     parse_digest = Parser.parse_digits(digits) if use_numbers
-    generated_names = NameGenerator.new.call(parsed_name, use_numbers, parse_digest)
 
+    generated_names = NameGenerator.new.call(parsed_name, use_numbers, parse_digest)
     generated_names.each do |n|
       retries = 1
       begin
